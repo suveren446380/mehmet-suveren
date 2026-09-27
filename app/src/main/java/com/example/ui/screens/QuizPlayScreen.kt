@@ -354,7 +354,7 @@ fun QuizPlayScreen(
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = if (activeQuiz.isAnswerCorrect == true) "Tebrikler, Doğru!" else "Maalesef Yanlış!",
+                                text = if (activeQuiz.isAnswerCorrect == true) "🔥 Baba pıro! Doğru!" else "💨 Yanlış Cevap!",
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.ExtraBold,
                                 color = Color.White

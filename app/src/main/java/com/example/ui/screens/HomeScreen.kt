@@ -169,7 +169,7 @@ fun HomeScreen(
         )
 
         Text(
-            text = "10 Etap • 100 Soru • Kolaydan Zora",
+            text = "10 Etap • 1000 Soruluk Havuz • Kolaydan Zora",
             style = MaterialTheme.typography.titleMedium,
             color = QuizGoldBright,
             fontWeight = FontWeight.SemiBold,
@@ -356,7 +356,9 @@ fun HomeScreen(
             },
             text = {
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    RuleRow("🎯", "100 Soru & 10 Etap", "Yarışma her biri 10 sorudan oluşan 10 etaptan meydana gelir. Sorular kolaydan zora doğru ilerler.")
+                    RuleRow("🎯", "1000 Soru & 10 Etap", "Yarışma 10 etaptan oluşur ve 1000 soruluk dev havuzdan beslenir. Her etapta sorular kolaydan zora doğru ilerler.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    RuleRow("🔊", "Özel Sesler", "Doğru cevaplarda 'Baba pıro!', yanlış cevaplarda ise 2 saniyelik komik osuruk sesi çalar!")
                     Spacer(modifier = Modifier.height(8.dp))
                     RuleRow("🔓", "Etap Kilidi", "Bir sonraki etaba geçmek için mevcut etaptan en az 7 doğru (7/10) yapmalısınız.")
                     Spacer(modifier = Modifier.height(8.dp))

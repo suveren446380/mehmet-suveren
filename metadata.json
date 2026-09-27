@@ -1,6 +1,8 @@
 {
   "name": "Bilgi Yarışı",
-  "description": "10 etap ve 100 sorudan oluşan, kolaydan zora ilerleyen bilgi yarışması oyunu",
+  "description": "10 etap ve 1000 soruluk dev havuzdan oluşan, kolaydan zora ilerleyen bilgi yarışması oyunu",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

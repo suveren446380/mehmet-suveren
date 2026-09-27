@@ -3,6 +3,7 @@ package com.example.ui.screens
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -119,6 +120,66 @@ fun StageResultScreen(
                     tint = if (starIndex < summary.stars) QuizGold else QuizCardDark,
                     modifier = Modifier.size(40.dp)
                 )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(18.dp))
+
+        val voicePhrase = when {
+            summary.correctCount == 10 -> "Babalar sözünü tutar."
+            summary.correctCount <= 5 -> "Çözmeseydin gardaş."
+            else -> "Aferin sana."
+        }
+
+        val voiceThemeColor = when {
+            summary.correctCount == 10 -> QuizGoldBright
+            summary.correctCount <= 5 -> QuizErrorRed
+            else -> QuizIndigoLight
+        }
+
+        // Voice Message Card
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp))
+                .clickable { viewModel.replayStageVoice() }
+                .testTag("result_voice_message_card"),
+            shape = RoundedCornerShape(16.dp),
+            color = voiceThemeColor.copy(alpha = 0.12f),
+            border = androidx.compose.foundation.BorderStroke(1.5.dp, voiceThemeColor.copy(alpha = 0.7f))
+        ) {
+            Row(
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(voiceThemeColor.copy(alpha = 0.25f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.VolumeUp,
+                        contentDescription = "Seslendir",
+                        tint = voiceThemeColor,
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "“$voicePhrase”",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = "Tekrar dinlemek için dokunun",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = QuizTextSecondary
+                    )
+                }
             }
         }
 

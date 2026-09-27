@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.data.local.QuestionsData
 import com.example.data.local.QuizDatabase
 import com.example.data.repository.QuizRepository
 import com.example.ui.screens.*
@@ -30,6 +31,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        QuestionsData.init(applicationContext)
 
         val database = QuizDatabase.getInstance(applicationContext)
         val repository = QuizRepository(database.quizDao())

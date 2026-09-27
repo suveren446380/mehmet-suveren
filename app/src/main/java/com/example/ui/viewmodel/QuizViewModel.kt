@@ -267,7 +267,11 @@ class QuizViewModel(
         val state = _activeQuiz.value
         timerJob?.cancel()
 
-        soundHaptic.playStageComplete(_userStats.value.soundEnabled, _userStats.value.vibrationEnabled)
+        soundHaptic.playStageResultSound(
+            correctCount = state.currentCorrectCount,
+            soundEnabled = _userStats.value.soundEnabled,
+            vibrationEnabled = _userStats.value.vibrationEnabled
+        )
 
         viewModelScope.launch {
             val result = repository.recordStageResult(
@@ -279,6 +283,15 @@ class QuizViewModel(
             _lastResultSummary.value = result
             _currentScreen.value = ScreenState.STAGE_RESULT
         }
+    }
+
+    fun replayStageVoice() {
+        val summary = _lastResultSummary.value ?: return
+        soundHaptic.playStageResultSound(
+            correctCount = summary.correctCount,
+            soundEnabled = _userStats.value.soundEnabled,
+            vibrationEnabled = _userStats.value.vibrationEnabled
+        )
     }
 
     // Lifeline 1: 50%
